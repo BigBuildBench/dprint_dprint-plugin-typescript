@@ -1,0 +1,37 @@
+[package]
+name = "dprint-plugin-typescript"
+version = "0.93.0"
+authors = ["David Sherret <dsherret@gmail.com>"]
+edition = "2021"
+homepage = "https://github.com/dprint/dprint-plugin-typescript"
+keywords = ["formatting", "formatter", "typescript", "javascript"]
+license = "MIT"
+repository = "https://github.com/dprint/dprint-plugin-typescript"
+description = "TypeScript and JavaScript code formatter."
+
+[lib]
+crate-type = ["lib", "cdylib"]
+
+[profile.release]
+opt-level = 3
+debug = false
+lto = true
+debug-assertions = false
+overflow-checks = false
+panic = "abort"
+
+[features]
+wasm = ["serde_json", "dprint-core/wasm"]
+tracing = ["dprint-core/tracing"]
+
+[[test]]
+name = "specs"
+path = "tests/spec_test.rs"
+harness = false
+
+[dependencies]
+
+[dev-dependencies]
+dprint-development = "0.10.1"
+pretty_assertions = "1.3.0"
+serde_json = { version = "1.0" }
